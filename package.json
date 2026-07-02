@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
-    "start": "npm run build:css && electron .",
-    "dev": "npm run build:css && electron .",
-    "build:css": "tailwindcss -i ./styles.css -o ./dist/styles.css",
-    "pack": "npm run build:css && electron-builder --dir",
-    "dist": "npm run build:css && electron-builder"
+    "start": "electron .",
+    "dev": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "keywords": [],
   "author": "",

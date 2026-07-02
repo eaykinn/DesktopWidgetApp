@@ -4,39 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Widget Dashboard</title>
-  <link rel="stylesheet" href="dist/styles.css">
+  <link rel="stylesheet" href="assets/style.css">
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 min-h-screen text-gray-800 dark:text-gray-100 p-6 transition-colors duration-300">
-  <div class="max-w-md mx-auto">
-    <h1 class="text-3xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">Widget Dashboard</h1>
-    
-    <div class="grid grid-cols-2 gap-4">
-      <button onclick="toggleWidget('clock', 300, 150)" class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col items-center justify-center gap-3 border border-transparent hover:border-blue-500/50">
-        <svg class="w-10 h-10 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-        <span class="font-semibold">Clock</span>
-      </button>
+<body class="dashboard">
+  <h1>Widget Dashboard</h1>
+  
+  <div class="dashboard-grid">
+    <button onclick="toggleWidget('clock', 300, 150)" class="widget-card card-clock">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+      <span>Clock</span>
+    </button>
 
-      <button onclick="toggleWidget('stopwatch', 350, 200)" class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col items-center justify-center gap-3 border border-transparent hover:border-purple-500/50">
-        <svg class="w-10 h-10 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-        <span class="font-semibold">Stopwatch</span>
-      </button>
+    <button onclick="toggleWidget('stopwatch', 350, 200)" class="widget-card card-stopwatch">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+      <span>Stopwatch</span>
+    </button>
 
-      <button onclick="toggleWidget('countdown', 350, 250)" class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col items-center justify-center gap-3 border border-transparent hover:border-pink-500/50">
-        <svg class="w-10 h-10 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-        <span class="font-semibold">Countdown</span>
-      </button>
+    <button onclick="toggleWidget('countdown', 350, 250)" class="widget-card card-countdown">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+      <span>Countdown</span>
+    </button>
 
-      <button onclick="toggleWidget('media', 360, 150)" class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col items-center justify-center gap-3 border border-transparent hover:border-green-500/50">
-        <svg class="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg>
-        <span class="font-semibold">Media</span>
-      </button>
+    <button onclick="toggleWidget('media', 360, 150)" class="widget-card card-media">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg>
+      <span>Media</span>
+    </button>
 
-      <button onclick="toggleWidget('weather', 300, 450)" class="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col items-center justify-center gap-3 border border-transparent hover:border-yellow-500/50">
-        <svg class="w-10 h-10 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path></svg>
-        <span class="font-semibold">Weather</span>
-      </button>
-    </div>
+    <button onclick="toggleWidget('weather', 300, 450)" class="widget-card card-weather">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path></svg>
+      <span>Weather</span>
+    </button>
   </div>
+
   <script src="dashboard.js"></script>
 </body>
 </html>

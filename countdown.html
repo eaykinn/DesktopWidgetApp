@@ -2,29 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="dist/styles.css">
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    .setup-panel { display: flex; flex-direction: column; gap: 15px; width: 100%; }
+    .time-inputs { display: flex; gap: 10px; justify-content: center; align-items: center; }
+    .time-inputs input {
+      width: 50px; padding: 8px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(0,0,0,0.3); color: white; text-align: center; font-size: 16px; font-family: monospace; outline: none;
+    }
+    .time-inputs span { font-size: 20px; font-weight: bold; color: white; }
+    .hidden { display: none !important; }
+  </style>
 </head>
-<body class="bg-transparent h-screen overflow-hidden flex items-center justify-center p-2 drag-region select-none">
-  <div class="relative bg-white/20 dark:bg-black/40 backdrop-blur-md rounded-2xl p-6 shadow-2xl border border-white/20 dark:border-white/10 flex flex-col items-center justify-center group w-full h-full">
-    <button id="close-btn" class="absolute top-2 right-2 no-drag opacity-0 group-hover:opacity-100 transition-opacity text-gray-500 hover:text-red-500 z-10">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+<body class="widget-window drag-region">
+  <div class="widget-container">
+    <button id="close-btn" class="close-btn no-drag">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
     </button>
-    <div id="display" class="text-4xl font-mono font-bold text-gray-800 dark:text-white mb-4">00:00:00</div>
+    <div id="display" class="time-display" style="margin-bottom: 20px;">00:00:00</div>
     
-    <div id="setup-panel" class="flex flex-col gap-3 w-full no-drag">
-      <div class="flex gap-2 justify-center">
-        <input id="input-h" type="number" min="0" max="99" value="0" class="w-16 p-2 rounded bg-white/50 dark:bg-black/50 border border-gray-300 dark:border-gray-600 text-center dark:text-white">
-        <span class="text-xl text-gray-800 dark:text-white py-1">:</span>
-        <input id="input-m" type="number" min="0" max="59" value="5" class="w-16 p-2 rounded bg-white/50 dark:bg-black/50 border border-gray-300 dark:border-gray-600 text-center dark:text-white">
-        <span class="text-xl text-gray-800 dark:text-white py-1">:</span>
-        <input id="input-s" type="number" min="0" max="59" value="0" class="w-16 p-2 rounded bg-white/50 dark:bg-black/50 border border-gray-300 dark:border-gray-600 text-center dark:text-white">
+    <div id="setup-panel" class="setup-panel no-drag">
+      <div class="time-inputs">
+        <input id="input-h" type="number" min="0" max="99" value="0">
+        <span>:</span>
+        <input id="input-m" type="number" min="0" max="59" value="5">
+        <span>:</span>
+        <input id="input-s" type="number" min="0" max="59" value="0">
       </div>
-      <button id="start-btn" class="w-full py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow transition-colors font-semibold">Start</button>
+      <button id="start-btn" class="action-btn primary" style="width: 100%; padding: 10px;">Start Countdown</button>
     </div>
 
-    <div id="control-panel" class="flex gap-3 no-drag hidden">
-      <button id="stop-btn" class="px-4 py-2 bg-yellow-500/80 hover:bg-yellow-500 text-white rounded-lg shadow transition-colors font-semibold w-20">Pause</button>
-      <button id="reset-btn" class="px-4 py-2 bg-red-500/80 hover:bg-red-500 text-white rounded-lg shadow transition-colors font-semibold w-20">Reset</button>
+    <div id="control-panel" class="action-buttons no-drag hidden">
+      <button id="stop-btn" class="action-btn" style="background: var(--accent-yellow);">Pause</button>
+      <button id="reset-btn" class="action-btn danger">Reset</button>
     </div>
   </div>
   <script src="countdown.js"></script>
