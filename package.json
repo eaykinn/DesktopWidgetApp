@@ -1,0 +1,36 @@
+{
+  "name": "desktopwidgetapp",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "npm run build:css && electron .",
+    "dev": "npm run build:css && electron .",
+    "build:css": "tailwindcss -i ./styles.css -o ./dist/styles.css",
+    "pack": "npm run build:css && electron-builder --dir",
+    "dist": "npm run build:css && electron-builder"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Modern Desktop Widget App",
+  "dependencies": {
+    "win-media-control-enhanced": "^0.1.1",
+    "windows-media-sessions": "^1.0.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.2",
+    "electron": "^43.0.0",
+    "electron-builder": "^26.15.3",
+    "tailwindcss": "^4.3.2"
+  },
+  "build": {
+    "appId": "com.desktopwidgetapp",
+    "productName": "Desktop Widget App",
+    "win": {
+      "target": "zip"
+    },
+    "directories": {
+      "buildResources": "build"
+    }
+  }
+}

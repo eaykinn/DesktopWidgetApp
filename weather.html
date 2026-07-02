@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="dist/styles.css">
+  <style>
+    /* Custom thin scrollbar for forecast list */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body class="bg-transparent h-screen overflow-hidden flex flex-col p-2 select-none text-gray-800 dark:text-white">
+  <div class="relative bg-white/20 dark:bg-black/40 backdrop-blur-md rounded-2xl p-4 shadow-2xl border border-white/20 dark:border-white/10 flex flex-col w-full h-full group">
+    
+    <!-- Drag handle -->
+    <div class="absolute top-0 left-0 right-0 h-6 drag-region z-0 rounded-t-2xl"></div>
+
+    <button id="close-btn" class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity text-gray-500 hover:text-red-500 z-20 cursor-pointer">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    </button>
+
+    <!-- Search Area -->
+    <div class="relative w-full mb-4 z-10 pt-2">
+      <input type="text" id="city-search" placeholder="Search city..." autocomplete="off" class="w-full bg-white/40 dark:bg-black/50 text-gray-900 dark:text-white rounded-lg px-3 py-1.5 outline-none placeholder-gray-500 dark:placeholder-gray-400 text-sm focus:ring-2 focus:ring-blue-400 transition-shadow">
+      
+      <!-- Dropdown Results -->
+      <div id="search-results" class="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden hidden max-h-40 overflow-y-auto custom-scrollbar border border-gray-200 dark:border-gray-700 z-30 text-sm">
+        <!-- items injected here -->
+      </div>
+    </div>
+
+    <!-- Main Weather Info -->
+    <div id="weather-content" class="flex-1 flex flex-col items-center justify-start hidden overflow-hidden">
+      <h2 id="location-name" class="text-lg font-bold mb-1 text-center w-full truncate">City Name</h2>
+      <div id="current-icon-container" class="w-16 h-16 mb-1 text-blue-500 dark:text-blue-400">
+        <!-- SVG Icon here -->
+      </div>
+      <div class="text-4xl font-bold mb-1" id="current-temp">--°C</div>
+      <div class="text-xs text-gray-600 dark:text-gray-300 font-medium mb-3" id="current-desc">Loading...</div>
+
+      <!-- Forecast List -->
+      <div class="w-full mt-auto overflow-y-auto max-h-[140px] pr-1 custom-scrollbar">
+        <div id="forecast-container" class="flex flex-col gap-2 w-full"></div>
+      </div>
+    </div>
+
+    <!-- Initial State -->
+    <div id="empty-state" class="flex-1 flex flex-col items-center justify-center text-center opacity-70">
+      <svg class="w-12 h-12 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+      <p class="text-sm font-medium">Search for a city<br>to see the weather.</p>
+    </div>
+
+  </div>
+  <script src="weather.js"></script>
+</body>
+</html>

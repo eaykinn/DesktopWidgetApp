@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="dist/styles.css">
+</head>
+
+<body class="bg-transparent h-screen overflow-hidden flex items-center justify-center p-2 drag-region select-none">
+  <!-- Container with dark background -->
+  <div
+    class="relative bg-[#181818] rounded-xl p-3 shadow-2xl border border-white/5 flex items-center gap-4 w-[360px] max-w-full group">
+
+    <!-- Close button (top right) -->
+    <button id="close-btn"
+      class="absolute top-2 right-2 no-drag opacity-0 group-hover:opacity-100 transition-opacity text-gray-500 hover:text-red-500 z-10 p-1 bg-black/40 rounded-full">
+      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+
+    <!-- Album Art -->
+    <div id="thumbnail-container"
+      class="w-[84px] h-[84px] bg-[#282828] rounded-md flex-shrink-0 flex items-center justify-center overflow-hidden bg-cover bg-center shadow-lg">
+      <svg id="default-icon" class="w-8 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3">
+        </path>
+      </svg>
+    </div>
+
+    <!-- Right Side (Info + Progress + Controls) -->
+    <div class="flex-1 flex flex-col min-w-0">
+
+      <!-- Title & Artist -->
+      <div class="mb-2">
+        <h3 id="title" class="text-[15px] font-bold text-white truncate leading-tight">No Media</h3>
+        <p id="artist" class="text-[13px] text-[#B3B3B3] truncate mt-0.5">Waiting for playback...</p>
+      </div>
+
+      <!-- Progress Bar Area -->
+      <div class="w-full flex items-center gap-2 mb-2 no-drag group/slider cursor-pointer" id="progress-container">
+        <span id="current-time"
+          class="text-[11px] text-[#a7a7a7] font-medium pointer-events-none w-8 text-right tabular-nums">0:00</span>
+
+        <div class="flex-1 h-3 relative flex items-center" id="progress-bg-wrapper">
+          <div class="w-full bg-[#4d4d4d] rounded-full h-1 relative overflow-hidden" id="progress-bg">
+            <div id="progress-bar"
+              class="bg-white h-full rounded-full pointer-events-none group-hover/slider:bg-[#1db954] transition-colors"
+              style="width: 0%"></div>
+          </div>
+          <!-- Thumb -->
+          <div id="progress-thumb"
+            class="absolute w-3 h-3 bg-white rounded-full shadow pointer-events-none opacity-0 group-hover/slider:opacity-100 transition-opacity"
+            style="left: 0%; transform: translateX(-50%);"></div>
+        </div>
+
+        <span id="total-time"
+          class="text-[11px] text-[#a7a7a7] font-medium pointer-events-none w-8 text-left tabular-nums">0:00</span>
+      </div>
+
+      <!-- Controls -->
+      <div class="flex items-center justify-center gap-5 no-drag">
+        <button id="btn-prev" class="text-[#a7a7a7] hover:text-white transition-colors">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
+          </svg>
+        </button>
+
+        <button id="btn-playpause"
+          class="w-[30px] h-[30px] flex items-center justify-center bg-white text-black rounded-full hover:scale-105 transition-transform shadow-md">
+          <svg id="icon-play" class="w-[18px] h-[18px] hidden ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+          <svg id="icon-pause" class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+          </svg>
+        </button>
+
+        <button id="btn-next" class="text-[#a7a7a7] hover:text-white transition-colors">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+  <script src="media.js"></script>
+</body>
+
+</html>
