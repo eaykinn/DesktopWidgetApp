@@ -27,9 +27,9 @@
       <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
     </button>
 
-    <div style="width: 100%; position: relative;" class="no-drag">
+    <div style="width: 100%; position: relative; z-index: 50;" class="no-drag">
       <input type="text" id="city-search" placeholder="Search city..." autocomplete="off" class="search-input">
-      <div id="search-results" class="search-results custom-scrollbar hidden"></div>
+      <div id="search-results" class="search-results custom-scrollbar hidden no-drag"></div>
     </div>
 
     <div id="weather-content" class="hidden" style="width: 100%; display: flex; flex-direction: column; align-items: center; flex: 1; overflow: hidden;">

@@ -46,11 +46,9 @@ async function fetchCities(query) {
     if (data.results && data.results.length > 0) {
       data.results.forEach(city => {
         const div = document.createElement('div');
-        div.className = 'px-3 py-2 cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-900 border-b border-gray-100 dark:border-gray-700 last:border-0 truncate';
         div.textContent = `${city.name}${city.admin1 ? ', ' + city.admin1 : ''}, ${city.country}`;
-        div.addEventListener('mousedown', (e) => {
+        div.addEventListener('click', (e) => {
           e.preventDefault();
-          e.stopPropagation();
           searchInput.value = '';
           searchResults.classList.add('hidden');
           fetchWeather(city);
@@ -59,7 +57,7 @@ async function fetchCities(query) {
       });
       searchResults.classList.remove('hidden');
     } else {
-      searchResults.innerHTML = '<div class="px-3 py-2 text-gray-500">No results found</div>';
+      searchResults.innerHTML = '<div style="padding: 10px 15px; color: var(--text-secondary);">No results found</div>';
       searchResults.classList.remove('hidden');
     }
   } catch (err) {
@@ -102,14 +100,14 @@ async function fetchWeather(city) {
       const icon = getWeatherInfo(daily.weather_code[i]).svgSmall;
       
       const row = document.createElement('div');
-      row.className = 'flex items-center justify-between bg-white/30 dark:bg-black/30 rounded px-2 py-1.5 text-xs';
+      row.className = 'forecast-item';
       row.innerHTML = `
-        <span class="w-10 font-bold">${dayName}</span>
-        <div class="w-6 h-6 text-blue-500 dark:text-blue-400">${icon}</div>
-        <div class="flex-1 text-right flex justify-end gap-2">
-          <span class="text-gray-500 dark:text-gray-400" title="Min">↓${min}°</span>
-          <span class="text-gray-800 dark:text-white font-medium" title="Avg">~${avg}°</span>
-          <span class="text-red-500 dark:text-red-400" title="Max">↑${max}°</span>
+        <span style="width: 40px; font-weight: bold; font-size: 13px;">${dayName}</span>
+        <div style="width: 24px; height: 24px; color: var(--accent-blue);">${icon}</div>
+        <div style="flex: 1; text-align: right; display: flex; justify-content: flex-end; gap: 8px; font-size: 13px;">
+          <span style="color: var(--text-secondary);" title="Min">↓${min}°</span>
+          <span style="color: var(--text-primary); font-weight: 500;" title="Avg">~${avg}°</span>
+          <span style="color: #f87171;" title="Max">↑${max}°</span>
         </div>
       `;
       forecastContainer.appendChild(row);
